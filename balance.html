@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Check Balance &mdash; TicketChain</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">&#127915; TicketChain</a>
+    <ul class="nav-links">
+        <li><a href="wallet.html">Create Wallet</a></li>
+        <li><a href="balance.html" class="active">Check Balance</a></li>
+        <li><a href="buy.html">Buy Ticket</a></li>
+        <li><a href="transfer.html">Transfer Ticket</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="page-header">
+        <h1>Check Balance</h1>
+        <p>View SETH and ticket token (TKT) balances for any wallet address. No MetaMask required.</p>
+    </div>
+
+    <!-- Lookup form -->
+    <div class="card">
+        <div class="card-title">&#128269; Wallet Lookup</div>
+
+        <div style="display:flex; align-items:center; gap:0.7rem; margin-bottom:1rem; flex-wrap:wrap;">
+            <button class="btn btn-secondary" onclick="useConnectedWallet()">
+                &#129297; Use My MetaMask Wallet
+            </button>
+            <span style="color:var(--text-muted); font-size:0.85rem;">or enter any address below</span>
+        </div>
+
+        <div class="form-group">
+            <label for="addressInput">Wallet Address</label>
+            <input type="text" id="addressInput" placeholder="0x..." autocomplete="off" />
+        </div>
+
+        <button class="btn btn-primary btn-full" onclick="checkBalance()">
+            &#128269; Check Balance
+        </button>
+    </div>
+
+    <!-- Balance result (hidden until queried) -->
+    <div class="card" id="balanceResult" style="display:none;">
+        <div class="card-title">&#128179; Balance</div>
+        <div class="data-row">
+            <span class="data-label">Address</span>
+            <span class="data-value mono" id="displayAddress">&mdash;</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">SETH Balance</span>
+            <span class="data-value highlight" id="sethBalance">&mdash;</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">Ticket Tokens (TKT)</span>
+            <span class="data-value highlight" id="tokenBalance">&mdash;</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">Valid Ticket Holder?</span>
+            <span class="data-value" id="holdsTicket">&mdash;</span>
+        </div>
+    </div>
+
+    <!-- Role guide -->
+    <div class="card">
+        <div class="card-title">&#127970; Role Guide</div>
+        <div style="font-size:0.875rem; color:var(--text-muted); line-height:2;">
+            <div>
+                <strong style="color:var(--text)">&#127939; Attendee &mdash;</strong>
+                Enter your own wallet address to confirm your ticket purchase was successful.
+            </div>
+            <div>
+                <strong style="color:var(--text)">&#128104;&#8205;&#128188; Doorman &mdash;</strong>
+                Enter the attendee's wallet address to verify they hold a valid TKT token at the door.
+            </div>
+            <div>
+                <strong style="color:var(--text)">&#127970; Venue &mdash;</strong>
+                Check any address to audit ticket distribution and track sales across wallets.
+            </div>
+        </div>
+    </div>
+
+    <div id="statusMsg"></div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/balance.js"></script>
+</body>
+</html>

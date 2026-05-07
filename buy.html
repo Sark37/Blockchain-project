@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buy Ticket &mdash; TicketChain</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">&#127915; TicketChain</a>
+    <ul class="nav-links">
+        <li><a href="wallet.html">Create Wallet</a></li>
+        <li><a href="balance.html">Check Balance</a></li>
+        <li><a href="buy.html" class="active">Buy Ticket</a></li>
+        <li><a href="transfer.html">Transfer Ticket</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="page-header">
+        <h1>Buy a Ticket</h1>
+        <p>Purchase a TKT ticket token by sending SETH to the smart contract via MetaMask.</p>
+    </div>
+
+    <!-- Step 1: Connect -->
+    <div class="card" id="connectCard">
+        <div class="card-title">&#129297; Step 1 &mdash; Connect Wallet</div>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.2rem; line-height:1.6;">
+            Connect your MetaMask wallet to continue. Ensure MetaMask is set to
+            <strong style="color:var(--text)">Sepolia Testnet</strong> before connecting.
+        </p>
+        <button class="btn btn-primary btn-full" id="connectBtn" onclick="connectWallet()">
+            Connect MetaMask
+        </button>
+    </div>
+
+    <!-- Step 2: Wallet info (shown after connect) -->
+    <div class="card" id="walletInfo" style="display:none;">
+        <div class="card-title">&#128100; Connected Wallet</div>
+        <div class="data-row">
+            <span class="data-label">Address</span>
+            <span class="data-value mono" id="connectedAddress">&mdash;</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">Network</span>
+            <span class="data-value" id="networkName">&mdash;</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">SETH Balance</span>
+            <span class="data-value" id="sethBalance">&mdash;</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">Tickets Owned (TKT)</span>
+            <span class="data-value" id="ticketBalance">&mdash;</span>
+        </div>
+    </div>
+
+    <!-- Step 3: Purchase (shown after connect) -->
+    <div class="card" id="purchaseCard" style="display:none;">
+        <div class="card-title">&#127915; Step 2 &mdash; Purchase Ticket</div>
+        <div class="data-row">
+            <span class="data-label">Ticket Price</span>
+            <span class="data-value highlight" id="ticketPrice">Loading&hellip;</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">You Receive</span>
+            <span class="data-value" style="color:var(--secondary);">1 TKT (Ticket Token)</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">Contract</span>
+            <span class="data-value mono" style="font-size:0.75rem;">Sepolia Testnet</span>
+        </div>
+
+        <hr class="divider" />
+
+        <button class="btn btn-success btn-full" id="buyBtn" onclick="buyTicket()">
+            &#127915; Buy Ticket
+        </button>
+    </div>
+
+    <!-- Transaction result -->
+    <div class="card" id="txResult" style="display:none;">
+        <div class="card-title">&#128196; Transaction</div>
+        <div class="data-row">
+            <span class="data-label">Status</span>
+            <span class="data-value" id="txStatus">&mdash;</span>
+        </div>
+        <div class="data-row" id="txHashRow" style="display:none;">
+            <span class="data-label">Etherscan</span>
+            <a class="tx-link" id="txHashLink" target="_blank" rel="noopener">&mdash;</a>
+        </div>
+    </div>
+
+    <div id="statusMsg"></div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/buy.js"></script>
+</body>
+</html>

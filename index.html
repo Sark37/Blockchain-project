@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TicketChain DApp</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">&#127915; TicketChain</a>
+    <ul class="nav-links">
+        <li><a href="wallet.html">Create Wallet</a></li>
+        <li><a href="balance.html">Check Balance</a></li>
+        <li><a href="buy.html">Buy Ticket</a></li>
+        <li><a href="transfer.html">Transfer Ticket</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="page-header">
+        <h1>TicketChain</h1>
+        <p>A decentralised event ticketing system on the Ethereum Sepolia Testnet.</p>
+        <br />
+        <span class="network-badge">
+            <span class="status-dot green"></span>
+            Sepolia Testnet &mdash; Chain ID 11155111
+        </span>
+    </div>
+
+    <div class="page-grid">
+        <a href="wallet.html" class="page-card">
+            <div class="page-card-icon">&#128273;</div>
+            <h2>Create Wallet</h2>
+            <p>Generate a new Ethereum wallet and download your encrypted keystore file.</p>
+        </a>
+        <a href="balance.html" class="page-card">
+            <div class="page-card-icon">&#128179;</div>
+            <h2>Check Balance</h2>
+            <p>View SETH and ticket token (TKT) balances for any wallet address.</p>
+        </a>
+        <a href="buy.html" class="page-card">
+            <div class="page-card-icon">&#127915;</div>
+            <h2>Buy a Ticket</h2>
+            <p>Purchase a TKT ticket token using SETH via your MetaMask wallet.</p>
+        </a>
+        <a href="transfer.html" class="page-card">
+            <div class="page-card-icon">&#128257;</div>
+            <h2>Transfer Ticket</h2>
+            <p>Return your ticket token to the vendor or transfer it to another address.</p>
+        </a>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem;">
+        <div class="card-title">&#8505; About TicketChain</div>
+        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.7;">
+            TicketChain uses an ERC-20 smart contract (<strong style="color:var(--text)">TicketToken / TKT</strong>)
+            deployed on the Ethereum Sepolia Testnet. Each ticket is represented as one TKT token.
+            Tickets are purchased by sending SETH to the contract, which mints a token directly to
+            the buyer's wallet. Tokens can then be verified by a doorman or returned to the vendor
+            via a standard ERC-20 transfer.
+        </p>
+    </div>
+</main>
+
+</body>
+</html>

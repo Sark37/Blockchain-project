@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transfer Ticket &mdash; TicketChain</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">&#127915; TicketChain</a>
+    <ul class="nav-links">
+        <li><a href="wallet.html">Create Wallet</a></li>
+        <li><a href="balance.html">Check Balance</a></li>
+        <li><a href="buy.html">Buy Ticket</a></li>
+        <li><a href="transfer.html" class="active">Transfer Ticket</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="page-header">
+        <h1>Transfer Ticket</h1>
+        <p>Return your TKT ticket token to the vendor, or transfer it to any Ethereum address.</p>
+    </div>
+
+    <!-- Step 1: Connect -->
+    <div class="card" id="connectCard">
+        <div class="card-title">&#129297; Step 1 &mdash; Connect Wallet</div>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.2rem; line-height:1.6;">
+            Connect the MetaMask wallet that holds your ticket token.
+            Ensure MetaMask is set to <strong style="color:var(--text)">Sepolia Testnet</strong>.
+        </p>
+        <button class="btn btn-primary btn-full" id="connectBtn" onclick="connectWallet()">
+            Connect MetaMask
+        </button>
+    </div>
+
+    <!-- Wallet info (shown after connect) -->
+    <div class="card" id="walletInfo" style="display:none;">
+        <div class="card-title">&#128100; Connected Wallet</div>
+        <div class="data-row">
+            <span class="data-label">Address</span>
+            <span class="data-value mono" id="connectedAddress">&mdash;</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">Network</span>
+            <span class="data-value" id="networkName">&mdash;</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">Ticket Balance</span>
+            <span class="data-value highlight" id="ticketBalance">&mdash;</span>
+        </div>
+    </div>
+
+    <!-- Transfer form (shown after connect) -->
+    <div class="card" id="transferCard" style="display:none;">
+        <div class="card-title">&#128257; Step 2 &mdash; Transfer Ticket</div>
+
+        <div class="form-group">
+            <label for="recipientAddress">Recipient Address</label>
+            <input type="text" id="recipientAddress" placeholder="0x..." autocomplete="off" />
+            <div style="margin-top:0.5rem;">
+                <button class="btn btn-secondary" style="font-size:0.8rem; padding:0.3rem 0.7rem;"
+                        onclick="useVendorAddress()">
+                    &#128257; Use Vendor Address
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="tokenAmount">Amount (TKT)</label>
+            <input type="number" id="tokenAmount" value="1" min="1" step="1" />
+        </div>
+
+        <div class="alert alert-warning">
+            &#9888;&nbsp; Token transfers are <strong>irreversible</strong>.
+            Double-check the recipient address before confirming in MetaMask.
+        </div>
+
+        <button class="btn btn-danger btn-full" id="transferBtn" onclick="transferTicket()">
+            &#128257; Transfer Ticket
+        </button>
+    </div>
+
+    <!-- Transaction result -->
+    <div class="card" id="txResult" style="display:none;">
+        <div class="card-title">&#128196; Transaction</div>
+        <div class="data-row">
+            <span class="data-label">Status</span>
+            <span class="data-value" id="txStatus">&mdash;</span>
+        </div>
+        <div class="data-row" id="txHashRow" style="display:none;">
+            <span class="data-label">Etherscan</span>
+            <a class="tx-link" id="txHashLink" target="_blank" rel="noopener">&mdash;</a>
+        </div>
+    </div>
+
+    <div id="statusMsg"></div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/transfer.js"></script>
+</body>
+</html>

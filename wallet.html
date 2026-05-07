@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Wallet &mdash; TicketChain</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">&#127915; TicketChain</a>
+    <ul class="nav-links">
+        <li><a href="wallet.html" class="active">Create Wallet</a></li>
+        <li><a href="balance.html">Check Balance</a></li>
+        <li><a href="buy.html">Buy Ticket</a></li>
+        <li><a href="transfer.html">Transfer Ticket</a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="page-header">
+        <h1>Create Wallet</h1>
+        <p>Generate a new Ethereum wallet. All processing happens locally in your browser &mdash; nothing is sent to a server.</p>
+    </div>
+
+    <div class="alert alert-warning">
+        &#9888;&nbsp; <strong>Security notice:</strong> Never share your private key or seed phrase with anyone.
+        Store your backup files securely offline and delete them from your Downloads folder afterwards.
+    </div>
+
+    <!-- Generator form -->
+    <div class="card">
+        <div class="card-title">&#128273; Generate New Wallet</div>
+
+        <div class="form-group">
+            <label for="password">Keystore Password</label>
+            <input type="password" id="password" placeholder="Enter a strong password (min 8 characters)" />
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" placeholder="Re-enter your password" />
+        </div>
+
+        <button class="btn btn-primary btn-full" id="generateBtn" onclick="generateWallet()">
+            &#10024; Generate Wallet
+        </button>
+    </div>
+
+    <!-- Result panel (hidden until wallet is generated) -->
+    <div class="card" id="walletResult" style="display:none;">
+        <div class="card-title">&#10004; Wallet Created</div>
+
+        <div class="data-row">
+            <span class="data-label">Public Address</span>
+            <span class="data-value" id="walletAddress">&mdash;</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">Network</span>
+            <span class="data-value">
+                <span class="network-badge"><span class="status-dot green"></span> Sepolia Testnet</span>
+            </span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">Starting Balance</span>
+            <span class="data-value">0.000000 SETH (new wallet)</span>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="form-group">
+            <label>&#128274; Private Key &mdash; keep secret</label>
+            <div class="secret-field" id="walletPrivateKey">&mdash;</div>
+        </div>
+
+        <div class="form-group">
+            <label>&#128196; Seed Phrase (12 words) &mdash; keep secret</label>
+            <div class="secret-field" id="walletMnemonic">&mdash;</div>
+        </div>
+
+        <hr class="divider" />
+
+        <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="downloadKeystore()">
+                &#11015; Download Keystore JSON
+            </button>
+            <button class="btn btn-secondary" onclick="downloadPlaintext()">
+                &#11015; Download Plaintext Backup
+            </button>
+            <button class="btn btn-secondary" onclick="copyAddress()">
+                &#128203; Copy Address
+            </button>
+        </div>
+
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.9rem; line-height:1.5;">
+            The <strong>Keystore JSON</strong> is encrypted with your password and is safe to store digitally.
+            The <strong>Plaintext Backup</strong> contains your unencrypted private key &mdash; store it offline only.
+        </p>
+    </div>
+
+    <div id="statusMsg"></div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+<script src="js/wallet.js"></script>
+</body>
+</html>
