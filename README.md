@@ -84,6 +84,23 @@ The contract must be deployed to Sepolia before the Buy/Transfer pages will work
 
 ---
 
+## Deployed Addresses
+
+All addresses are on the **Ethereum Sepolia Testnet**.
+
+| Role | Address |
+|---|---|
+| TicketToken Contract | `0x727776A31672f8C607613E14427E38629cCf6dc9` |
+| Contract Creator / Vendor | `0x6db63Cb31CC33A20Dc5F74fFfb48a00f0cb68a3D` |
+| Vendor / Doorman Wallet | `0x67335516c275c7b364080b150df499d0553a9c68` |
+
+View on Sepolia Etherscan:
+- [TicketToken Contract](https://sepolia.etherscan.io/address/0x727776A31672f8C607613E14427E38629cCf6dc9)
+- [Contract Creator / Vendor](https://sepolia.etherscan.io/address/0x6db63Cb31CC33A20Dc5F74fFfb48a00f0cb68a3D)
+- [Vendor / Doorman Wallet](https://sepolia.etherscan.io/address/0x67335516c275c7b364080b150df499d0553a9c68)
+
+---
+
 ## Network Configuration
 
 | Setting | Value |
