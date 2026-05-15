@@ -2,10 +2,8 @@
 // After deploying TicketToken.sol via Remix, update the two addresses below.
 
 const CONFIG = {
-    // !! Replace with your deployed contract address on Sepolia !!
-    CONTRACT_ADDRESS: "0x727776A31672f8C607613E14427E38629cCf6dc9",
+    CONTRACT_ADDRESS: "0xFA924bF7f76615c0A7150B1bE17d67324f52573B",
 
-    // !! Replace with the vendor wallet address !!
     VENDOR_ADDRESS: "0x6db63Cb31CC33A20Dc5F74fFfb48a00f0cb68a3D",
 
     CHAIN_ID: 11155111,
