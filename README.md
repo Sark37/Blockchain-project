@@ -24,14 +24,22 @@ Use any Sepolia faucet, for example:
 
 > **Important:** The app must be served over HTTP — opening the HTML files directly from the filesystem (`file://`) will prevent MetaMask from injecting `window.ethereum`, and the wallet connection will fail.
 
-**Option 1 — Python (recommended, no install needed):**
+**Option 1 — VS Code Live Server (recommended):**
+1. Install the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension by Ritwick Dey
+2. Right-click any `.html` file in the Explorer → **Open with Live Server**
+   (or click **Go Live** in the VS Code status bar)
+3. The app opens automatically at `http://localhost:5500`
+
+Live Server auto-reloads on every file save, so changes are reflected instantly without cache issues.
+
+**Option 2 — Python (no install needed):**
 ```bash
 cd "path/to/Blockchain project"
 python -m http.server 8080
 ```
 Then open `http://localhost:8080` in your browser.
 
-**Option 2 — Node.js (`npx serve`):**
+**Option 3 — Node.js (`npx serve`):**
 ```bash
 cd "path/to/Blockchain project"
 npx serve .

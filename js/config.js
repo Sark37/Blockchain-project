@@ -11,8 +11,14 @@ const CONFIG = {
     CHAIN_ID: 11155111,
     CHAIN_NAME: "Sepolia Testnet",
 
-    // Public Sepolia RPC — used for read-only balance checks (no MetaMask needed)
-    RPC_URL: "https://rpc.sepolia.org",
+    // Public Sepolia RPCs — used for read-only balance checks (no MetaMask needed)
+    // Multiple endpoints so FallbackProvider can retry if one is down
+    RPC_URLS: [
+        "https://rpc.sepolia.org",
+        "https://rpc2.sepolia.org",
+        "https://ethereum-sepolia-rpc.publicnode.com",
+        "https://sepolia.drpc.org"
+    ],
 
     // Human-readable ABI for TicketToken (ethers.js v6 format)
     CONTRACT_ABI: [

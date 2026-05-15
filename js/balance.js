@@ -1,3 +1,19 @@
+async function getProvider() {
+    for (const url of CONFIG.RPC_URLS) {
+        try {
+            const p = new ethers.JsonRpcProvider(url);
+            await Promise.race([
+                p.getBlockNumber(),
+                new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000))
+            ]);
+            return p;
+        } catch {
+            // try next
+        }
+    }
+    throw new Error('All Sepolia RPC endpoints failed — check your internet connection or try again later.');
+}
+
 async function checkBalance() {
     const address = document.getElementById('addressInput').value.trim();
 
@@ -11,7 +27,7 @@ async function checkBalance() {
     showStatus('<span class="spinner"></span>&nbsp; Fetching balances from Sepolia...', 'info');
 
     try {
-        const provider = new ethers.JsonRpcProvider(CONFIG.RPC_URL);
+        const provider = await getProvider();
 
         const sethWei  = await provider.getBalance(address);
         const sethBal  = parseFloat(ethers.formatEther(sethWei));
