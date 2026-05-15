@@ -3,6 +3,7 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 /**
  * @title  TicketToken
@@ -22,7 +23,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  *     e.g. 1000000000000000 = 0.001 SETH.
  *  7. Copy the deployed contract address into js/config.js.
  */
-contract TicketToken is ERC20, Ownable {
+contract TicketToken is ERC20, Ownable, ReentrancyGuard {
 
     uint256 public ticketPrice;
 
@@ -40,7 +41,7 @@ contract TicketToken is ERC20, Ownable {
      *         Caller must send at least ticketPrice wei with this call.
      *         Any excess SETH is refunded.
      */
-    function buyTicket() external payable {
+    function buyTicket() external payable nonReentrant {
         require(msg.value >= ticketPrice, "TicketToken: insufficient SETH sent");
 
         _mint(msg.sender, 1 * 10 ** decimals());
@@ -63,7 +64,7 @@ contract TicketToken is ERC20, Ownable {
     /**
      * @notice Withdraw collected SETH to the contract owner.
      */
-    function withdraw() external onlyOwner {
+    function withdraw() external onlyOwner nonReentrant {
         uint256 balance = address(this).balance;
         require(balance > 0, "TicketToken: nothing to withdraw");
         payable(owner()).transfer(balance);
